@@ -7,8 +7,10 @@ from flask import Flask, request, jsonify
 import pyodbc
 from config import Config 
 from waitress import serve
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app) 
 
 server = Config.SERVER
 database = Config.DATABASE
