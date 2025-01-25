@@ -6,7 +6,7 @@
 from flask import Flask, request, jsonify
 import pyodbc
 from config import Config 
-from waitress import serve
+#from waitress import serve
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -106,4 +106,4 @@ def read_record():
     return jsonify(result), status_code
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
