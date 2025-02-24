@@ -1,6 +1,3 @@
-# config.py
-import os
-
 class Config:
     SERVER = 'hexango.clqoi2aemq8p.ap-south-1.rds.amazonaws.com'
     DATABASE = "foretale"
