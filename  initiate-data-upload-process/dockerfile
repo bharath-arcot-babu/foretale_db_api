@@ -1,0 +1,28 @@
+FROM amazonlinux:2023
+
+# Install Python 3.12, pip, and required build tools
+RUN dnf -y install \
+    python3.12 \
+    python3.12-pip \
+    python3.12-devel \
+    gcc \
+    gcc-c++ \
+    zip \
+    unixODBC \
+    unixODBC-devel \
+    libffi-devel \
+    openssl-devel
+
+# Upgrade pip and setuptools
+RUN python3.12 -m pip install --upgrade pip setuptools wheel
+
+# Create layer directory
+RUN mkdir -p /opt/python
+
+# Install Python packages into the layer folder
+RUN python3.12 -m pip install --only-binary=:all: \
+    requests boto3  \
+    -t /opt/python
+
+# Package the layer zip
+RUN cd /opt && zip -r9 upload_process_layer.zip python

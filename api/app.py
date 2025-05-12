@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from database.db_service import DatabaseService
+from api.database.db_service import DatabaseService
 from waitress import serve
 
 app = Flask(__name__)
