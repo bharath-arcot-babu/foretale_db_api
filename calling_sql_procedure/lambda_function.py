@@ -1,5 +1,5 @@
 import json
-from database.db_service import DatabaseService
+from layer_db_utils.services.db_service import DatabaseService
 
 db_service = DatabaseService()
 
