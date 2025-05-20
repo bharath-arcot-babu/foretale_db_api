@@ -1,7 +1,7 @@
 import json
-from database.db_service import DatabaseService
+from layer_db_utils.services.upload_service import UploadDatabaseService
 
-db_service = DatabaseService()
+db_service = UploadDatabaseService()
 
 def lambda_handler(event, context):
     try:

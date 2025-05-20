@@ -1,7 +1,7 @@
 import pandas as pd
 from urllib.parse import quote_plus
 from sqlalchemy import create_engine
-from database.config import Config
+from layer_db_utils.config import Config
 
 
 class DatabaseService:
