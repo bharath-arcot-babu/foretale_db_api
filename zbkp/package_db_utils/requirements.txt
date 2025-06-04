@@ -1,0 +1,7 @@
+# Database dependencies
+#pyodbc>=5.0.1  # Required for SQL Server connection
+sqlalchemy>=2.0.0  # Required for ORM
+pandas>=2.2.0  # Required for SQL operations with DataFrames
+
+# Utility dependencies
+python-dotenv>=1.0.0  # Required for environment variables
