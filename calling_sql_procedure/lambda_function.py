@@ -12,6 +12,7 @@ def lambda_handler(event, context):
     method = event['httpMethod']
     path = event['path']
 
+
     if method == 'POST' and path == '/insert_record':
         return process_crud(event, is_commit=True)
 

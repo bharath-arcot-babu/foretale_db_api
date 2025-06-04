@@ -1,0 +1,23 @@
+# Document Processing
+PyPDF2==3.0.1
+python-docx==1.1.2
+python-pptx==1.0.2
+openpyxl==3.1.5
+
+
+# AWS
+boto3==1.36.6
+
+# Vector Database
+pinecone==6.0.2
+
+# Environment and Type Hints
+python-dotenv==1.1.0
+typing-extensions==4.12.2
+
+# Data Processing
+pandas==2.1.2
+
+# Text Processing
+langchain==0.0.352
+

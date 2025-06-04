@@ -1,0 +1,832 @@
+2025-05-28 22:43:17,985 - __main__ - INFO - Starting agent execution
+2025-05-28 22:43:17,985 - __main__ - INFO - Starting test case processing
+2025-05-28 22:43:17,985 - __main__ - INFO - Compiling workflow graph
+2025-05-28 22:43:17,991 - __main__ - INFO - Executing workflow
+2025-05-28 22:43:17,996 - __main__ - INFO - Starting test case summarization
+2025-05-28 22:43:17,999 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:43:18,018 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-05-28 22:43:18,173 - botocore.tokens - WARNING - SSO token refresh attempt failed
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 297, in _refresh_access_token
+    return self._attempt_create_token(token)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 256, in _attempt_create_token
+    response = self._client.create_token(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1058, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.InvalidGrantException: An error occurred (InvalidGrantException) when calling the CreateToken operation: 
+2025-05-28 22:43:18,174 - botocore.credentials - WARNING - Refreshing temporary credentials failed during mandatory refresh period.
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-05-28 22:43:18,175 - langchain_aws.llms.bedrock - ERROR - Error raised by bedrock service
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 935, in _prepare_input_and_invoke
+    response = self.client.invoke_model(**request_options)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1040, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1064, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 189, in sign
+    auth = self.get_auth_instance(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 307, in get_auth_instance
+    frozen_credentials = credentials.get_frozen_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 664, in get_frozen_credentials
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 551, in _refresh
+    self._protected_refresh(is_mandatory=is_mandatory_refresh)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-05-28 22:43:18,178 - __main__ - ERROR - Unexpected error: Error when retrieving token from sso: Token has expired and refresh failed
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 330, in <module>
+    process_test_case(initial_state)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 316, in process_test_case
+    result = orchestrator.invoke(initial_state)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/__init__.py", line 2719, in invoke
+    for chunk in self.stream(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/__init__.py", line 2436, in stream
+    for _ in runner.tick(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/runner.py", line 161, in tick
+    run_with_retry(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/utils/runnable.py", line 623, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/utils/runnable.py", line 377, in invoke
+    ret = self.func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 44, in summarize_test_case
+    result = TestCaseSummarizer().summarize(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/tools/summarizer_tool.py", line 15, in summarize
+    response = BedrockLangChainService().call_llm_general_purpose(prompt)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/layer_llm_service/bedrock_langchain_utils.py", line 64, in call_llm_general_purpose
+    return self._call_mistral(prompt, max_tokens, temperature, top_p, top_k)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/layer_llm_service/bedrock_langchain_utils.py", line 88, in _call_mistral
+    response = self.llm.invoke(prompt)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 370, in invoke
+    self.generate_prompt(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 947, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 766, in generate
+    self._generate_with_cache(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 1012, in _generate_with_cache
+    result = self._generate(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/chat_models/bedrock.py", line 775, in _generate
+    completion, tool_calls, llm_output = self._prepare_input_and_invoke(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 950, in _prepare_input_and_invoke
+    raise e
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 935, in _prepare_input_and_invoke
+    response = self.client.invoke_model(**request_options)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1040, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1064, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 189, in sign
+    auth = self.get_auth_instance(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 307, in get_auth_instance
+    frozen_credentials = credentials.get_frozen_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 664, in get_frozen_credentials
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 551, in _refresh
+    self._protected_refresh(is_mandatory=is_mandatory_refresh)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-05-28 22:44:02,592 - __main__ - INFO - Starting agent execution
+2025-05-28 22:44:02,592 - __main__ - INFO - Starting test case processing
+2025-05-28 22:44:02,592 - __main__ - INFO - Compiling workflow graph
+2025-05-28 22:44:02,598 - __main__ - INFO - Executing workflow
+2025-05-28 22:44:02,602 - __main__ - INFO - Starting test case summarization
+2025-05-28 22:44:02,609 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:44:02,615 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-05-28 22:44:06,921 - __main__ - INFO - Test case summarization completed
+2025-05-28 22:44:06,922 - __main__ - INFO - Starting ambiguity resolution
+2025-05-28 22:44:06,922 - __main__ - INFO - Found 1 ambiguities to resolve
+2025-05-28 22:44:12,597 - __main__ - INFO - Starting table extraction
+2025-05-28 22:44:15,513 - __main__ - INFO - Found 2 tables
+2025-05-28 22:44:15,514 - __main__ - INFO - Starting table resolution
+2025-05-28 22:44:15,522 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:44:16,709 - __main__ - INFO - Table resolution completed
+2025-05-28 22:44:16,710 - __main__ - INFO - Starting column extraction
+2025-05-28 22:44:19,869 - __main__ - INFO - Column extraction completed
+2025-05-28 22:44:19,871 - __main__ - INFO - Starting column resolution
+2025-05-28 22:44:19,879 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:44:21,263 - __main__ - INFO - Column resolution completed
+2025-05-28 22:44:21,264 - __main__ - INFO - Starting SQL query generation
+2025-05-28 22:44:21,271 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:44:25,400 - __main__ - INFO - SQL query generation completed
+2025-05-28 22:44:25,401 - __main__ - INFO - Starting SQL query formatting
+2025-05-28 22:44:25,409 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:44:28,267 - __main__ - INFO - Starting database config update
+2025-05-28 22:44:31,929 - __main__ - INFO - Database config update completed
+2025-05-28 22:44:31,930 - __main__ - INFO - Workflow execution completed
+2025-05-28 22:44:31,930 - __main__ - INFO - Agent execution completed successfully
+2025-05-28 22:50:07,016 - __main__ - INFO - Starting agent execution
+2025-05-28 22:50:07,016 - __main__ - INFO - Starting test case processing
+2025-05-28 22:50:07,017 - __main__ - INFO - Compiling workflow graph
+2025-05-28 22:50:07,023 - __main__ - INFO - Executing workflow
+2025-05-28 22:50:07,029 - __main__ - INFO - Starting test case summarization
+2025-05-28 22:50:07,033 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:50:07,042 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-05-28 22:50:11,315 - __main__ - INFO - Test case summarization completed
+2025-05-28 22:50:11,316 - __main__ - INFO - Starting ambiguity resolution
+2025-05-28 22:50:11,316 - __main__ - INFO - Found 1 ambiguities to resolve
+2025-05-28 22:50:14,429 - __main__ - INFO - Starting table extraction
+2025-05-28 22:50:17,553 - __main__ - INFO - Found 2 tables
+2025-05-28 22:50:17,555 - __main__ - INFO - Starting table resolution
+2025-05-28 22:50:17,563 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:50:18,886 - __main__ - INFO - Table resolution completed
+2025-05-28 22:50:18,888 - __main__ - INFO - Starting column extraction
+2025-05-28 22:50:21,966 - __main__ - INFO - Column extraction completed
+2025-05-28 22:50:21,968 - __main__ - INFO - Starting column resolution
+2025-05-28 22:50:21,974 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:50:23,394 - __main__ - INFO - Column resolution completed
+2025-05-28 22:50:23,396 - __main__ - INFO - Starting SQL query generation
+2025-05-28 22:50:23,405 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:50:27,327 - __main__ - INFO - SQL query generation completed
+2025-05-28 22:50:27,328 - __main__ - INFO - Starting SQL query formatting
+2025-05-28 22:50:27,335 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-05-28 22:50:30,663 - __main__ - INFO - Starting database config update
+2025-05-28 22:50:34,240 - __main__ - INFO - Database config update completed
+2025-05-28 22:50:34,241 - __main__ - INFO - Workflow execution completed
+2025-05-28 22:50:34,241 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:37:50,240 - __main__ - INFO - Starting agent execution
+2025-06-03 19:37:50,240 - __main__ - INFO - Starting test case processing
+2025-06-03 19:37:50,241 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:37:50,254 - __main__ - INFO - Executing workflow
+2025-06-03 19:37:50,261 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:37:50,267 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:37:50,415 - botocore.tokens - INFO - Loading cached SSO token for amplify-admin
+2025-06-03 19:37:50,964 - botocore.tokens - WARNING - SSO token refresh attempt failed
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 297, in _refresh_access_token
+    return self._attempt_create_token(token)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 256, in _attempt_create_token
+    response = self._client.create_token(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1058, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.InvalidGrantException: An error occurred (InvalidGrantException) when calling the CreateToken operation: 
+2025-06-03 19:37:50,966 - botocore.credentials - WARNING - Refreshing temporary credentials failed during mandatory refresh period.
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-06-03 19:37:50,967 - langchain_aws.llms.bedrock - ERROR - Error raised by bedrock service
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 935, in _prepare_input_and_invoke
+    response = self.client.invoke_model(**request_options)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1040, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1064, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 189, in sign
+    auth = self.get_auth_instance(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 307, in get_auth_instance
+    frozen_credentials = credentials.get_frozen_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 664, in get_frozen_credentials
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 551, in _refresh
+    self._protected_refresh(is_mandatory=is_mandatory_refresh)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-06-03 19:37:50,969 - __main__ - ERROR - Unexpected error: Error when retrieving token from sso: Token has expired and refresh failed
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 329, in <module>
+    process_test_case(initial_state)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 315, in process_test_case
+    result = orchestrator.invoke(initial_state)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/__init__.py", line 2719, in invoke
+    for chunk in self.stream(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/__init__.py", line 2436, in stream
+    for _ in runner.tick(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/runner.py", line 161, in tick
+    run_with_retry(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/utils/runnable.py", line 623, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/utils/runnable.py", line 377, in invoke
+    ret = self.func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 44, in summarize_test_case
+    result = TestCaseSummarizer().summarize(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/tools/summarizer_tool.py", line 15, in summarize
+    response = BedrockLangChainService().call_llm_general_purpose(prompt)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/layer_llm_service/bedrock_langchain_utils.py", line 64, in call_llm_general_purpose
+    return self._call_mistral(prompt, max_tokens, temperature, top_p, top_k)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/layer_llm_service/bedrock_langchain_utils.py", line 88, in _call_mistral
+    response = self.llm.invoke(prompt)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 370, in invoke
+    self.generate_prompt(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 947, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 766, in generate
+    self._generate_with_cache(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 1012, in _generate_with_cache
+    result = self._generate(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/chat_models/bedrock.py", line 775, in _generate
+    completion, tool_calls, llm_output = self._prepare_input_and_invoke(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 950, in _prepare_input_and_invoke
+    raise e
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 935, in _prepare_input_and_invoke
+    response = self.client.invoke_model(**request_options)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1040, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1064, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 189, in sign
+    auth = self.get_auth_instance(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 307, in get_auth_instance
+    frozen_credentials = credentials.get_frozen_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 664, in get_frozen_credentials
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 551, in _refresh
+    self._protected_refresh(is_mandatory=is_mandatory_refresh)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-06-03 19:38:35,543 - __main__ - INFO - Starting agent execution
+2025-06-03 19:38:35,543 - __main__ - INFO - Starting test case processing
+2025-06-03 19:38:35,543 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:38:35,550 - __main__ - INFO - Executing workflow
+2025-06-03 19:38:35,554 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:38:35,562 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:38:35,567 - botocore.tokens - INFO - Loading cached SSO token for amplify-admin
+2025-06-03 19:38:35,834 - botocore.tokens - WARNING - SSO token refresh attempt failed
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 297, in _refresh_access_token
+    return self._attempt_create_token(token)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 256, in _attempt_create_token
+    response = self._client.create_token(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1058, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.InvalidGrantException: An error occurred (InvalidGrantException) when calling the CreateToken operation: 
+2025-06-03 19:38:35,835 - botocore.credentials - WARNING - Refreshing temporary credentials failed during mandatory refresh period.
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-06-03 19:38:35,836 - langchain_aws.llms.bedrock - ERROR - Error raised by bedrock service
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 935, in _prepare_input_and_invoke
+    response = self.client.invoke_model(**request_options)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1040, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1064, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 189, in sign
+    auth = self.get_auth_instance(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 307, in get_auth_instance
+    frozen_credentials = credentials.get_frozen_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 664, in get_frozen_credentials
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 551, in _refresh
+    self._protected_refresh(is_mandatory=is_mandatory_refresh)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-06-03 19:38:35,837 - __main__ - ERROR - Unexpected error: Error when retrieving token from sso: Token has expired and refresh failed
+Traceback (most recent call last):
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 329, in <module>
+    process_test_case(initial_state)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 315, in process_test_case
+    result = orchestrator.invoke(initial_state)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/__init__.py", line 2719, in invoke
+    for chunk in self.stream(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/__init__.py", line 2436, in stream
+    for _ in runner.tick(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/runner.py", line 161, in tick
+    run_with_retry(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/utils/runnable.py", line 623, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langgraph/utils/runnable.py", line 377, in invoke
+    ret = self.func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/agent.py", line 44, in summarize_test_case
+    result = TestCaseSummarizer().summarize(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/tools/summarizer_tool.py", line 15, in summarize
+    response = BedrockLangChainService().call_llm_general_purpose(prompt)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/layer_llm_service/bedrock_langchain_utils.py", line 64, in call_llm_general_purpose
+    return self._call_mistral(prompt, max_tokens, temperature, top_p, top_k)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/ai_agents/layer_llm_service/bedrock_langchain_utils.py", line 88, in _call_mistral
+    response = self.llm.invoke(prompt)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 370, in invoke
+    self.generate_prompt(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 947, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 766, in generate
+    self._generate_with_cache(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 1012, in _generate_with_cache
+    result = self._generate(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/chat_models/bedrock.py", line 775, in _generate
+    completion, tool_calls, llm_output = self._prepare_input_and_invoke(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 950, in _prepare_input_and_invoke
+    raise e
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/langchain_aws/llms/bedrock.py", line 935, in _prepare_input_and_invoke
+    response = self.client.invoke_model(**request_options)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1040, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/client.py", line 1064, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 189, in sign
+    auth = self.get_auth_instance(**kwargs)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/signers.py", line 307, in get_auth_instance
+    frozen_credentials = credentials.get_frozen_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 664, in get_frozen_credentials
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 551, in _refresh
+    self._protected_refresh(is_mandatory=is_mandatory_refresh)
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 567, in _protected_refresh
+    metadata = self._refresh_using()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 716, in fetch_credentials
+    return self._get_cached_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 726, in _get_cached_credentials
+    response = self._get_credentials()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/credentials.py", line 2243, in _get_credentials
+    token = initial_token_data.get_frozen_token().token
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 82, in get_frozen_token
+    self._refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 95, in _refresh
+    self._protected_refresh()
+  File "/Users/bharath.arcot.babu/Documents/projects/foretale_db_api/venv/lib/python3.10/site-packages/botocore/tokens.py", line 122, in _protected_refresh
+    raise TokenRetrievalError(
+botocore.exceptions.TokenRetrievalError: Error when retrieving token from sso: Token has expired and refresh failed
+2025-06-03 19:39:25,317 - __main__ - INFO - Starting agent execution
+2025-06-03 19:39:25,317 - __main__ - INFO - Starting test case processing
+2025-06-03 19:39:25,318 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:39:25,327 - __main__ - INFO - Executing workflow
+2025-06-03 19:39:25,332 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:39:25,341 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:39:25,456 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:39:29,294 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:39:29,296 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:39:29,296 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:39:29,296 - __main__ - INFO - Starting table extraction
+2025-06-03 19:39:35,566 - __main__ - INFO - Found 2 tables
+2025-06-03 19:39:35,567 - __main__ - INFO - Starting table resolution
+2025-06-03 19:39:35,573 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:39:37,986 - __main__ - INFO - Table resolution completed
+2025-06-03 19:39:37,987 - __main__ - INFO - Starting column extraction
+2025-06-03 19:39:44,206 - __main__ - INFO - Column extraction completed
+2025-06-03 19:39:44,207 - __main__ - INFO - Starting column resolution
+2025-06-03 19:39:44,215 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:39:50,377 - __main__ - INFO - Column resolution completed
+2025-06-03 19:39:50,377 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:39:50,383 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:39:53,932 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:39:53,933 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:39:53,940 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:39:58,016 - __main__ - INFO - Starting database config update
+2025-06-03 19:40:03,659 - __main__ - INFO - Database config update completed
+2025-06-03 19:40:03,660 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:40:03,660 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:41:05,259 - __main__ - INFO - Starting agent execution
+2025-06-03 19:41:05,259 - __main__ - INFO - Starting test case processing
+2025-06-03 19:41:05,260 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:41:05,270 - __main__ - INFO - Executing workflow
+2025-06-03 19:41:05,273 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:41:05,278 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:41:05,375 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:41:10,771 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:41:10,773 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:41:10,773 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:41:10,773 - __main__ - INFO - Starting table extraction
+2025-06-03 19:41:17,869 - __main__ - INFO - Found 2 tables
+2025-06-03 19:41:17,871 - __main__ - INFO - Starting table resolution
+2025-06-03 19:41:17,877 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:41:20,956 - __main__ - INFO - Table resolution completed
+2025-06-03 19:41:20,958 - __main__ - INFO - Starting column extraction
+2025-06-03 19:41:25,178 - __main__ - INFO - Column extraction completed
+2025-06-03 19:41:25,179 - __main__ - INFO - Starting column resolution
+2025-06-03 19:41:25,183 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:41:27,906 - __main__ - INFO - Column resolution completed
+2025-06-03 19:41:27,907 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:41:27,914 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:41:31,520 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:41:31,521 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:41:31,530 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:41:34,186 - __main__ - INFO - Starting database config update
+2025-06-03 19:41:39,770 - __main__ - INFO - Database config update completed
+2025-06-03 19:41:39,770 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:41:39,771 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:42:41,217 - __main__ - INFO - Starting agent execution
+2025-06-03 19:42:41,217 - __main__ - INFO - Starting test case processing
+2025-06-03 19:42:41,218 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:42:41,228 - __main__ - INFO - Executing workflow
+2025-06-03 19:42:41,232 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:42:41,238 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:42:41,347 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:42:45,006 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:42:45,008 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:42:45,008 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:42:45,008 - __main__ - INFO - Starting table extraction
+2025-06-03 19:42:48,526 - __main__ - INFO - Found 2 tables
+2025-06-03 19:42:48,527 - __main__ - INFO - Starting table resolution
+2025-06-03 19:42:48,534 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:42:50,159 - __main__ - INFO - Table resolution completed
+2025-06-03 19:42:50,160 - __main__ - INFO - Starting column extraction
+2025-06-03 19:42:55,339 - __main__ - INFO - Column extraction completed
+2025-06-03 19:42:55,341 - __main__ - INFO - Starting column resolution
+2025-06-03 19:42:55,349 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:42:57,231 - __main__ - INFO - Column resolution completed
+2025-06-03 19:42:57,232 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:42:57,239 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:43:00,688 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:43:00,689 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:43:00,696 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:43:03,433 - __main__ - INFO - Starting database config update
+2025-06-03 19:43:08,289 - __main__ - INFO - Database config update completed
+2025-06-03 19:43:08,289 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:43:08,290 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:43:24,971 - __main__ - INFO - Starting agent execution
+2025-06-03 19:43:24,971 - __main__ - INFO - Starting test case processing
+2025-06-03 19:43:24,971 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:43:24,986 - __main__ - INFO - Executing workflow
+2025-06-03 19:43:24,988 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:43:24,994 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:43:25,000 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:43:28,820 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:43:28,821 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:43:28,821 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:43:28,822 - __main__ - INFO - Starting table extraction
+2025-06-03 19:43:32,302 - __main__ - INFO - Found 2 tables
+2025-06-03 19:43:32,303 - __main__ - INFO - Starting table resolution
+2025-06-03 19:43:32,312 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:43:33,858 - __main__ - INFO - Table resolution completed
+2025-06-03 19:43:33,860 - __main__ - INFO - Starting column extraction
+2025-06-03 19:43:37,980 - __main__ - INFO - Column extraction completed
+2025-06-03 19:43:37,982 - __main__ - INFO - Starting column resolution
+2025-06-03 19:43:37,988 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:43:40,752 - __main__ - INFO - Column resolution completed
+2025-06-03 19:43:40,753 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:43:40,760 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:43:45,817 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:43:45,819 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:43:45,827 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:43:48,401 - __main__ - INFO - Starting database config update
+2025-06-03 19:43:53,040 - __main__ - INFO - Database config update completed
+2025-06-03 19:43:53,041 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:43:53,042 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:44:20,249 - __main__ - INFO - Starting agent execution
+2025-06-03 19:44:20,249 - __main__ - INFO - Starting test case processing
+2025-06-03 19:44:20,250 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:44:20,260 - __main__ - INFO - Executing workflow
+2025-06-03 19:44:20,262 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:44:20,266 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:44:20,295 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:44:24,023 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:44:24,024 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:44:24,024 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:44:24,025 - __main__ - INFO - Starting table extraction
+2025-06-03 19:44:27,442 - __main__ - INFO - Found 2 tables
+2025-06-03 19:44:27,443 - __main__ - INFO - Starting table resolution
+2025-06-03 19:44:27,449 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:44:29,009 - __main__ - INFO - Table resolution completed
+2025-06-03 19:44:29,011 - __main__ - INFO - Starting column extraction
+2025-06-03 19:44:33,074 - __main__ - INFO - Column extraction completed
+2025-06-03 19:44:33,075 - __main__ - INFO - Starting column resolution
+2025-06-03 19:44:33,079 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:44:35,170 - __main__ - INFO - Column resolution completed
+2025-06-03 19:44:35,171 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:44:35,178 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:44:39,631 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:44:39,633 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:44:39,641 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:44:44,078 - __main__ - INFO - Starting database config update
+2025-06-03 19:44:48,744 - __main__ - INFO - Database config update completed
+2025-06-03 19:44:48,745 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:44:48,745 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:45:54,051 - __main__ - INFO - Starting agent execution
+2025-06-03 19:45:54,051 - __main__ - INFO - Starting test case processing
+2025-06-03 19:45:54,051 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:45:54,057 - __main__ - INFO - Executing workflow
+2025-06-03 19:45:54,063 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:45:54,067 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:45:54,092 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:45:57,710 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:45:57,711 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:45:57,711 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:45:57,712 - __main__ - INFO - Starting table extraction
+2025-06-03 19:46:01,255 - __main__ - INFO - Found 2 tables
+2025-06-03 19:46:01,256 - __main__ - INFO - Starting table resolution
+2025-06-03 19:46:01,260 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:46:02,835 - __main__ - INFO - Table resolution completed
+2025-06-03 19:46:02,837 - __main__ - INFO - Starting column extraction
+2025-06-03 19:46:06,251 - __main__ - INFO - Column extraction completed
+2025-06-03 19:46:06,252 - __main__ - INFO - Starting column resolution
+2025-06-03 19:46:06,258 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:46:08,015 - __main__ - INFO - Column resolution completed
+2025-06-03 19:46:08,017 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:46:08,024 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:46:11,560 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:46:11,562 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:46:11,570 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:46:14,261 - __main__ - INFO - Starting database config update
+2025-06-03 19:46:18,760 - __main__ - INFO - Database config update completed
+2025-06-03 19:46:18,761 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:46:18,761 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:50:03,879 - __main__ - INFO - Starting agent execution
+2025-06-03 19:50:03,880 - __main__ - INFO - Starting test case processing
+2025-06-03 19:50:03,880 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:50:03,889 - __main__ - INFO - Executing workflow
+2025-06-03 19:50:03,891 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:50:03,895 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:50:03,968 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:50:07,871 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:50:07,872 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:50:07,872 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:50:07,873 - __main__ - INFO - Starting table extraction
+2025-06-03 19:50:11,487 - __main__ - INFO - Found 2 tables
+2025-06-03 19:50:11,488 - __main__ - INFO - Starting table resolution
+2025-06-03 19:50:11,496 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:50:13,051 - __main__ - INFO - Table resolution completed
+2025-06-03 19:50:13,053 - __main__ - INFO - Starting column extraction
+2025-06-03 19:50:16,321 - __main__ - INFO - Column extraction completed
+2025-06-03 19:50:16,324 - __main__ - INFO - Starting column resolution
+2025-06-03 19:50:16,331 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:50:18,163 - __main__ - INFO - Column resolution completed
+2025-06-03 19:50:18,164 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:50:18,170 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:50:21,814 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:50:21,815 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:50:21,822 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:50:24,582 - __main__ - INFO - Starting database config update
+2025-06-03 19:50:29,124 - __main__ - INFO - Database config update completed
+2025-06-03 19:50:29,126 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:50:29,126 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:53:54,180 - __main__ - INFO - Starting agent execution
+2025-06-03 19:53:54,180 - __main__ - INFO - Starting test case processing
+2025-06-03 19:53:54,180 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:53:54,186 - __main__ - INFO - Executing workflow
+2025-06-03 19:53:54,188 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:53:54,192 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:53:54,291 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:54:00,023 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:54:00,024 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:54:00,025 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:54:00,025 - __main__ - INFO - Starting table extraction
+2025-06-03 19:54:03,541 - __main__ - INFO - Found 2 tables
+2025-06-03 19:54:03,542 - __main__ - INFO - Starting table resolution
+2025-06-03 19:54:03,549 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:54:05,181 - __main__ - INFO - Table resolution completed
+2025-06-03 19:54:05,182 - __main__ - INFO - Starting column extraction
+2025-06-03 19:54:08,461 - __main__ - INFO - Column extraction completed
+2025-06-03 19:54:08,462 - __main__ - INFO - Starting column resolution
+2025-06-03 19:54:08,469 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:54:10,201 - __main__ - INFO - Column resolution completed
+2025-06-03 19:54:10,202 - __main__ - INFO - Starting SQL query generation
+2025-06-03 19:54:10,211 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:54:14,020 - __main__ - INFO - SQL query generation completed
+2025-06-03 19:54:14,022 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 19:54:14,030 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:54:16,426 - __main__ - INFO - Starting database config update
+2025-06-03 19:54:20,996 - __main__ - INFO - Database config update completed
+2025-06-03 19:54:20,997 - __main__ - INFO - Workflow execution completed
+2025-06-03 19:54:20,997 - __main__ - INFO - Agent execution completed successfully
+2025-06-03 19:59:49,003 - __main__ - INFO - Starting agent execution
+2025-06-03 19:59:49,003 - __main__ - INFO - Starting test case processing
+2025-06-03 19:59:49,003 - __main__ - INFO - Compiling workflow graph
+2025-06-03 19:59:49,009 - __main__ - INFO - Executing workflow
+2025-06-03 19:59:49,015 - __main__ - INFO - Starting test case summarization
+2025-06-03 19:59:49,019 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:59:49,129 - botocore.tokens - INFO - Loading cached SSO token for test_config
+2025-06-03 19:59:53,781 - __main__ - INFO - Test case summarization completed
+2025-06-03 19:59:53,782 - __main__ - INFO - Starting ambiguity resolution
+2025-06-03 19:59:53,782 - __main__ - INFO - No ambiguities found to resolve
+2025-06-03 19:59:53,782 - __main__ - INFO - Starting table extraction
+2025-06-03 19:59:57,448 - __main__ - INFO - Found 2 tables
+2025-06-03 19:59:57,449 - __main__ - INFO - Starting table resolution
+2025-06-03 19:59:57,455 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 19:59:58,991 - __main__ - INFO - Table resolution completed
+2025-06-03 19:59:58,993 - __main__ - INFO - Starting column extraction
+2025-06-03 20:00:03,142 - __main__ - INFO - Column extraction completed
+2025-06-03 20:00:03,144 - __main__ - INFO - Starting column resolution
+2025-06-03 20:00:03,152 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 20:00:04,921 - __main__ - INFO - Column resolution completed
+2025-06-03 20:00:04,923 - __main__ - INFO - Starting SQL query generation
+2025-06-03 20:00:04,929 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 20:00:10,088 - __main__ - INFO - SQL query generation completed
+2025-06-03 20:00:10,089 - __main__ - INFO - Starting SQL query formatting
+2025-06-03 20:00:10,097 - langchain_aws.llms.bedrock - INFO - Using Bedrock Invoke API to generate response
+2025-06-03 20:00:12,531 - __main__ - INFO - Starting database config update
+2025-06-03 20:00:17,103 - __main__ - INFO - Database config update completed
+2025-06-03 20:00:17,104 - __main__ - INFO - Workflow execution completed
+2025-06-03 20:00:17,104 - __main__ - INFO - Agent execution completed successfully
