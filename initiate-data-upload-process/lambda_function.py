@@ -45,7 +45,7 @@ def invoke_data_quality_proc(project_id, table_id):
     }
     
     response, status_code = db_service.execute_stored_procedure(
-        procedure_name="dbo.sproc_invoke_data_quality_sproc",
+        procedure_name="dbo.sproc_invoke_data_quality_proc",
         params=params,
         isJsonOutput=False
     )
@@ -58,11 +58,10 @@ def invoke_data_quality_proc(project_id, table_id):
         logger.error(f"Error invoking data quality procedure: {error_msg}")
         raise Exception(error_msg)
        
-def update_file_upload(file_upload_id, table_name, upload_status, error_message, user_id, other_updates_flag):
+def update_file_upload(file_upload_id, upload_status, error_message, user_id, other_updates_flag):
     logger.info(f"Updating file upload status for file_upload_id: {file_upload_id}, status: {upload_status}")
     params = {
         "file_upload_id": file_upload_id,
-        "table_name": table_name,
         "upload_status": upload_status,
         "error_message": error_message,
         "last_updated_by": user_id,
@@ -151,7 +150,6 @@ def process_csv(event, context, file_upload_id, user_id):
 
     for file_upload in pending_csv_uploads:
         try:
-            #file details
             file_upload_id = file_upload['file_upload_id']
             project_id = file_upload['project_id']
             table_id = file_upload['table_id']
@@ -159,12 +157,6 @@ def process_csv(event, context, file_upload_id, user_id):
             csv_details = json.loads(file_upload['csv_details'])
             csv_column_seperator = csv_details["column_separator"]
             csv_text_qualifier = csv_details["text_qualifier"] or '"'
-            file_name = file_upload['file_name']
-            file_path = file_upload['file_path']
-            #physical table details
-            full_table_name = file_upload['physical_table_name']
-            physical_table_schema = full_table_name.split('.', 1)[0]
-            physical_table_name = full_table_name.split('.', 1)[1]
 
             logger.info(f"Processing file upload: {file_upload_id} for project: {project_id}, table: {table_id}")
 
@@ -172,7 +164,6 @@ def process_csv(event, context, file_upload_id, user_id):
                 logger.warning(f"Column mapping not found for file_upload_id: {file_upload_id}")
                 update_file_upload(
                     file_upload_id,
-                    full_table_name,
                     "Pending",
                     "Column mapping not found.",
                     user_id,
@@ -181,13 +172,17 @@ def process_csv(event, context, file_upload_id, user_id):
             else:
                 update_file_upload(
                     file_upload_id,
-                    full_table_name,
                     "Uploading",
                     "Data process has been initiated.",
                     user_id,
                     "0"
                 )
-
+                
+                file_name = file_upload['file_name']
+                file_path = file_upload['file_path']
+                full_table_name = file_upload['physical_table_name']
+                physical_table_schema = full_table_name.split('.', 1)[0]
+                physical_table_name = full_table_name.split('.', 1)[1]
                 data_upload_batch = []
                 target_columns = list(column_mapping.keys())
 
@@ -207,22 +202,20 @@ def process_csv(event, context, file_upload_id, user_id):
                     logger.info(f"Uploading remaining {len(data_upload_batch)} rows")
                     upload_data_to_sql_by_batch(rows=data_upload_batch, columns=target_columns, target_table_name=physical_table_name, target_schema=physical_table_schema)
 
-                logger.info(f"Invoking data quality procedure for project_id: {project_id}, table_id: {table_id}")
-                invoke_data_quality_proc(project_id, table_id)
-
                 update_file_upload(
                     file_upload_id,
-                    full_table_name,
                     "Completed",
                     "Data has been successfully uploaded.",
                     user_id,
                     "1"
                 )
+
+                logger.info(f"Invoking data quality procedure for project_id: {project_id}, table_id: {table_id}")
+                invoke_data_quality_proc(project_id, table_id)
         except Exception as e:
             logger.error(f"Error processing file upload {file_upload_id}: {str(e)}")
             update_file_upload(
                 file_upload_id,
-                full_table_name,
                 "Pending",
                 str(e),
                 user_id,

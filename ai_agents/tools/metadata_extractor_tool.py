@@ -5,12 +5,12 @@ class MetadataExtractor:
     def __init__(self):
         pass
 
-    def get_schema_tables(self, schema_name=None, key_tables=None):
+    def get_schema_tables(self, project_id=None, key_tables=None):
         """
         Extract table information using sproc_get_schema_tables stored procedure.
         
         Args:
-            schema_name (str, optional): Name of the schema to get tables for. If None, returns tables for all schemas.
+            project_id (str, optional): Name of the schema to get tables for. If None, returns tables for all schemas.
             key_tables (list, optional): List of specific tables to get information for.
             
         Returns:
@@ -22,7 +22,7 @@ class MetadataExtractor:
                 'path': '/read_record',
                 'queryStringParameters': {
                     'procedure_name': 'sproc_get_schema_tables',
-                    'schema_name': schema_name,
+                    'project_id': project_id,
                     'table_list': key_tables
                 }
             }
@@ -40,12 +40,12 @@ class MetadataExtractor:
         except Exception as e:
             raise Exception(f"Error fetching schema tables: {str(e)}")
         
-    def get_table_columns(self, schema_name, target_table_list):
+    def get_table_columns(self, project_id, target_table_list):
         """
         Extract column information for specified tables.
         
         Args:
-            schema_name (str): Name of the schema
+            project_id (str): Name of the project
             target_table_list (list): List of table names to get columns for
         
         Returns:
@@ -57,7 +57,7 @@ class MetadataExtractor:
                 'path': '/read_record',
                 'queryStringParameters': {
                     'procedure_name': 'sproc_get_schema_table_columns',
-                    'schema_name': schema_name,
+                    'project_id': project_id,
                     'target_table_list': target_table_list
                 }
             }
@@ -90,7 +90,7 @@ class MetadataExtractor:
                 'httpMethod': 'GET',
                 'path': '/read_record',
                 'queryStringParameters': {
-                    'procedure_name': 'sproc_get_schema_joins',
+                    'procedure_name': 'sproc_get_schema_join_paths',
                     'table_names': table_list
                 }
             }

@@ -15,6 +15,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 #models
+
 from models.summarizer_model import SummarizerOutput
 
 #tools
@@ -24,6 +25,7 @@ from tools.metadata_extractor_tool import MetadataExtractor
 from tools.table_resolver_tool import TableResolverTool
 from tools.column_resolver_tool import ColumnResolverTool
 from tools.generate_sql_tool import SQLGenerationTool
+from tools.column_modifier_tool import ColumnModifierTool
 from tools.sql_formatter_tool import SQLFormatterTool
 from tools.update_config_to_database_tool import UpdateConfigToDatabaseTool
 
@@ -109,10 +111,10 @@ def ambiguity_resolver(state):
 
 def extract_tables(state):
     logger.info("Starting table extraction")
-    schema_name = state.get("schema_name", "")
-    logger.debug(f"Extracting tables for schema: {schema_name}")
+    project_id = state.get("project_id", 0)
+    logger.debug(f"Extracting tables for project: {project_id}")
 
-    result = MetadataExtractor().get_schema_tables(schema_name=schema_name)
+    result = MetadataExtractor().get_schema_tables(project_id=project_id)
     logger.info(f"Found {len(result)} tables")
     logger.debug(f"Extracted tables: {result}")
 
@@ -152,13 +154,13 @@ def resolve_tables(state):
 def extract_columns(state):
     logger.info("Starting column extraction")
     resolved_tables = json.loads(state.get("resolved_tables"))
-    schema_name = state.get("schema_name","")
+    project_id = state.get("project_id", 0)
     logger.debug(f"Extracting columns for tables: {resolved_tables}")
     
     target_table_list = ','.join(resolved_tables.values())
 
     result = MetadataExtractor().get_table_columns(
-        schema_name=schema_name,
+        project_id=project_id,
         target_table_list=target_table_list
     )
 
@@ -179,6 +181,17 @@ def resolve_columns(state):
     logger.info("Starting column resolution")
     business_attributes = state.get("key_columns")
     target_table_columns = json.loads(state.get("all_columns_from_the_target_tables"))
+    
+    # Extract only column_name and column_description
+    target_table_columns = [
+        {
+            "column_name": col["column_name"],
+            "column_description": col["column_description"]
+        }
+        for col in target_table_columns
+    ]
+    
+    
     logger.debug(f"Resolving columns for attributes: {business_attributes}")
 
     result = ColumnResolverTool().resolve_columns(
@@ -198,6 +211,26 @@ def resolve_columns(state):
         "resolved_columns": assistant_content
     }
 
+def joins_resolver(state):
+    logger.info("Starting joins resolution")
+    logger.debug(f"Resolving joins: {state.get('key_join_hints')}")
+
+    resolved_tables = json.loads(state.get("resolved_tables"))
+    table_list = ','.join(resolved_tables.values())
+    result = MetadataExtractor().get_join_hints(table_list=table_list)
+    logger.info("Joins resolution completed")
+    logger.debug(f"Resolved joins: {result}")
+
+    messages = state.get("messages", [])
+    assistant_content = json.dumps(result, indent=2)
+    messages = messages + [{"role": "assistant", "content": assistant_content}]
+
+    return {
+        **state,
+        "messages": messages,
+        "resolved_joins": assistant_content
+    }
+
 def generate_sql_query(state):
     logger.info("Starting SQL query generation")
     test_summary = state.get("summary")
@@ -205,16 +238,28 @@ def generate_sql_query(state):
     resolved_tables = json.loads(state.get("resolved_tables"))
     table_hints = ','.join(resolved_tables.values())
 
-    resolved_columns = json.loads(state.get("resolved_columns"))
-    column_hints = ','.join(resolved_columns.values())
+    resolved_columns = json.loads(state.get("resolved_columns")).values()
+    all_columns_from_the_target_tables = json.loads(state.get("all_columns_from_the_target_tables"))
+    column_hints = []
+    
+    for resolved_column in resolved_columns:
+        for target_column in all_columns_from_the_target_tables:
+            if resolved_column == target_column["column_name"]:
+                column_hints.append({
+                    "column_name": target_column["column_name"],
+                    "column_description": target_column["column_description"]
+                })
 
-    join_hints = ""#state.get("key_join_hints")
+    join_hints = json.loads(state.get("resolved_joins"))
     schema_name = state.get("schema_name")
+    select_clause = state.get("select_clause")
 
     logger.debug(f"Generating SQL with criteria: {criteria}")
-    print(f"Generating SQL with criteria: {criteria}")
-    print(f"Table hints: {table_hints}")
-    print(f"Column hints: {column_hints}")
+    #print(f"Generating SQL with criteria: {criteria}")
+    #print(f"Table hints: {table_hints}")
+    #print(f"Column hints: {column_hints}")
+    #print(f"Join hints: {join_hints}")
+    #print(f"Select clause: {select_clause}")
 
     result = SQLGenerationTool().generate_sql(
         test_summary=test_summary,
@@ -222,9 +267,10 @@ def generate_sql_query(state):
         table_hints=table_hints,
         column_hints=column_hints,
         join_hints=join_hints,
-        schema_name=schema_name
+        schema_name=schema_name,
+        select_clause=select_clause
     )
-    print(f"Generated SQL: {result}")
+
     logger.info("SQL query generation completed")
     logger.debug(f"Generated SQL: {result}")
 
@@ -238,9 +284,44 @@ def generate_sql_query(state):
         "ai_written_sql_query": assistant_content
     }
 
+def apply_column_modifications(state):
+    logger.info("Starting column modifications")
+    sql_query = state.get("ai_written_sql_query")
+    logger.debug(f"Applying column modifications to SQL query: {sql_query}")
+    
+    column_hints = []
+    resolved_columns = json.loads(state.get("resolved_columns")).values()
+    all_columns_from_the_target_tables = json.loads(state.get("all_columns_from_the_target_tables"))
+    
+    for resolved_column in resolved_columns:
+        for target_column in all_columns_from_the_target_tables:
+            if resolved_column == target_column["column_name"]:
+                column_hints.append({
+                    "column_name": target_column["column_name"],
+                    "column_description": target_column["column_description"],
+                    "data_type": target_column["data_type"],
+                    "null_count": target_column["null_count"],
+                    "length": target_column["length"],
+                    "min_value": target_column["min_value"],
+                    "max_value": target_column["max_value"],  
+                    "sample_values": target_column["sample_values"]
+                })
+
+    result = ColumnModifierTool().apply_column_modifications(sql_query=sql_query, column_with_data_profile=column_hints)
+
+    messages = state.get("messages", [])
+    assistant_content = json.dumps(result, indent=2)
+    messages = messages + [{"role": "assistant", "content": assistant_content}]
+
+    return {
+        **state,
+        "messages": messages,
+        "ai_written_sql_query_modified": assistant_content
+    }
+
 def format_sql_query(state):
     logger.info("Starting SQL query formatting")
-    sql_query = state.get("ai_written_sql_query")
+    sql_query = state.get("ai_written_sql_query_modified")
     logger.debug(f"Formatting SQL query: {sql_query}")
 
     result = SQLFormatterTool().format_sql(sql_query=sql_query)
@@ -265,7 +346,7 @@ def update_config_to_database(state):
     resolved_tables = json.loads(state.get("resolved_tables"))
     resolved_columns = json.loads(state.get("resolved_columns"))
     key_criteria = state.get("key_criteria")
-    key_join_hints = "" #state.get("key_join_hints")
+    key_join_hints = state.get("resolved_joins")
     ambiguities = state.get("ambiguities")
     full_state = state
     config = state.get("formatted_sql_query")
@@ -303,7 +384,9 @@ def process_test_case(initial_state):
     graph.add_node("table_resolver", resolve_tables)
     graph.add_node("target_columns_extractor", extract_columns)
     graph.add_node("column_resolver", resolve_columns)
+    graph.add_node("joins_resolver", joins_resolver)
     graph.add_node("sql_query_generator", generate_sql_query)
+    graph.add_node("column_modifier", apply_column_modifications)
     graph.add_node("sql_query_formatter", format_sql_query)
     graph.add_node("update_config_to_database", update_config_to_database)
 
@@ -315,8 +398,10 @@ def process_test_case(initial_state):
     graph.add_edge("all_tables_extractor", "table_resolver")
     graph.add_edge("table_resolver", "target_columns_extractor")
     graph.add_edge("target_columns_extractor", "column_resolver")
-    graph.add_edge("column_resolver", "sql_query_generator")
-    graph.add_edge("sql_query_generator", "sql_query_formatter")
+    graph.add_edge("column_resolver", "joins_resolver")
+    graph.add_edge("joins_resolver", "sql_query_generator")
+    graph.add_edge("sql_query_generator", "column_modifier")
+    graph.add_edge("column_modifier", "sql_query_formatter")
     graph.add_edge("sql_query_formatter", "update_config_to_database")
     graph.add_edge("update_config_to_database", END)
 
@@ -342,7 +427,6 @@ if __name__ == "__main__":
         process_test_case(initial_state)
         logger.info("Agent execution completed successfully")
     except json.JSONDecodeError as e:
-        
         logger.error(f"Failed to parse JSON input: {e}")
         sys.exit(1)
     except Exception as e:

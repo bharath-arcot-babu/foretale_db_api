@@ -9,7 +9,7 @@ You are given a test case with a name, description, criteria, and database schem
 Your job is to generate a valid SQL query that satisfies the test criteria using the provided tables, columns, and join conditions.
 
 Follow these guidelines:
-1. Use only the provided tables and columns
+1. Use ONLY the provided tables and columns. DON'T HALLUCINATE ANYTHING.
 2. Follow the specified join conditions
 3. Ensure the query is optimized for performance
 4. Include comments explaining the logic

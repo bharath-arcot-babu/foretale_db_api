@@ -132,7 +132,8 @@ class PromptTemplate:
         table_hints: str,
         column_hints: str,
         join_hints: str,
-        schema_name: str
+        schema_name: str,
+        select_clause: str
     ) -> str:
         """
         Builds a prompt for generating SQL query.
@@ -164,6 +165,7 @@ class PromptTemplate:
         Target columns to be used for writing the SQL query: {column_hints}
         Join conditions to be used for writing the SQL query: {join_hints}
         Table schema name: {schema_name}
+        Select clause columns to be used (DON'T USE SELECT * or include other columns): {select_clause}
         {self.examples}
         """
         return prompt
@@ -234,3 +236,38 @@ class PromptTemplate:
         {self.examples}
         """
         return prompt 
+    
+    def build_prompt_template_apply_column_modifications(
+        self,
+        sql_query: str,
+        column_with_data_profile: str
+    ) -> str:
+        """
+        Builds a prompt for applying column modifications.
+        
+        Args:
+            sql_query: The SQL query to modify
+            column_with_data_profile: List of columns with data profile
+            
+        Returns:
+            str: The complete formatted prompt
+        """
+        prompt = f"""
+        {self.role}
+
+        {self.instructions}
+
+        {self.goal}
+
+        {self.output_format}
+
+        Here is the SQL query to modify:
+        SQL Query: {sql_query}
+
+        Here is the list of columns with data profile:
+        Column with Data Profile: {column_with_data_profile}
+
+        {self.examples}
+        """
+        return prompt 
+
