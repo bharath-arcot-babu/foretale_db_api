@@ -11,9 +11,11 @@ Your job is to generate a valid SQL query that satisfies the test criteria using
 Follow these guidelines:
 1. Use ONLY the provided tables and columns. DON'T HALLUCINATE ANYTHING.
 2. Follow the specified join conditions
-3. Ensure the query is optimized for performance
-4. Include comments explaining the logic
-5. Follow SQL Server syntax and best practices. Use CTEs if necessary.
+3. Apply the column modifications to the query
+4. Ensure the query is optimized for performance
+5. Include comments explaining the logic
+6. Follow SQL Server syntax and best practices. Use CTEs if necessary.
+7. VERY IMPORTANT: INCLUDE ALL THE NECESSARY KEY COLUMNS IN THE SELECT CLAUSE.
 ''',
             goal='Generate a valid and optimized SQL query that satisfies the test criteria.',
             output_format='''

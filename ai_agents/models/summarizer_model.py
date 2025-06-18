@@ -11,3 +11,7 @@ class SummarizerOutput(BaseModel):
     key_columns: list[str]
     key_criteria: list[str]
     ambiguities: list[str]
+    select_columns: list[str]
+    technical_ambiguities: list[str]
+    column_modifications: list[str]
+

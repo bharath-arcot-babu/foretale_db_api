@@ -50,7 +50,7 @@ class PromptTemplate:
         Here is the test case name, description and past user responses:
         Test Case Name: {test_name}
         Test Case Description: {test_description}
-        Past User Responses (| is the separator):
+        Past User Responses (newline or ; is the separator):
         {past_responses_section}
         """
         return prompt
@@ -120,6 +120,7 @@ class PromptTemplate:
         Here is the list of target table columns with primary/composite key columns:
         {target_table_columns}
 
+        Here is the list of examples that are already resolved:
         {self.examples}
 
         """
@@ -131,9 +132,10 @@ class PromptTemplate:
         criteria: str,
         table_hints: str,
         column_hints: str,
+        column_modifications: str,
         join_hints: str,
         schema_name: str,
-        select_clause: str
+        select_columns: str
     ) -> str:
         """
         Builds a prompt for generating SQL query.
@@ -160,13 +162,11 @@ class PromptTemplate:
 
         Here is the test case information:
         Test Summary: {test_summary}
-        Filtering Criteria: {criteria}
         Target tables to be used for writing the SQL query: {table_hints}
         Target columns to be used for writing the SQL query: {column_hints}
         Join conditions to be used for writing the SQL query: {join_hints}
         Table schema name: {schema_name}
-        Select clause columns to be used (DON'T USE SELECT * or include other columns): {select_clause}
-        {self.examples}
+        
         """
         return prompt
 

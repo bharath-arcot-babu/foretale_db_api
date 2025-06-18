@@ -16,18 +16,19 @@ Map each business attribute to a database column name.
             output_format='''
 Respond ONLY with a valid JSON object in the following format and nothing else. Do not include any explanation, markdown, or extra text.:            
 {
-  "business_attribute": "database_column"
+  "business_attribute": "database_table.database_column"
 }
             ''',
             examples=[
                 '''
 Business Attributes: Order Number, Order Date, Total Amount
-Database Columns: ord_num, ord_date, tot_amt
+Database Columns: orders.ord_num, orders.ord_date, orders.tot_amt
+
 Output:
 {
-  "order_number": "ord_num",
-  "order_date": "ord_date",
-  "total_amount": "tot_amt"
+  "order_number": "orders.ord_num",
+  "order_date": "orders.ord_date",
+  "total_amount": "orders.tot_amt"
 }
 '''
             ]

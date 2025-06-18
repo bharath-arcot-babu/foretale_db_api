@@ -8,9 +8,10 @@ class SQLGenerationTool:
         criteria: str,
         table_hints: str,
         column_hints: str,
+        column_modifications: str,
         join_hints: str,
         schema_name: str,
-        select_clause: str
+        select_columns: str
     ) -> str:
         """
         Generates a SQL query based on the test case, description, criteria, and various hints.
@@ -30,9 +31,10 @@ class SQLGenerationTool:
             criteria=criteria,
             table_hints=table_hints,
             column_hints=column_hints,
+            column_modifications=column_modifications,
             join_hints=join_hints,
             schema_name=schema_name,
-            select_clause=select_clause
+            select_columns=select_columns
         )
         
         response = BedrockLangChainService().call_llm_general_purpose(prompt)

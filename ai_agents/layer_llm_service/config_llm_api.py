@@ -19,7 +19,7 @@ class LLMApiConfig:
     MISTRAL_API_KEY = ""  # Add your Mistral API key
 
     # Default MISTRAL model configurations
-    DEFAULT_MAX_TOKENS = 1000
+    DEFAULT_MAX_TOKENS = 2000
     DEFAULT_TEMPERATURE = 0.0
     DEFAULT_TOP_P = 1.0
     DEFAULT_TOP_K = 50

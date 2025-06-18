@@ -57,7 +57,8 @@ class UpdateConfigToDatabaseTool:
                                   ai_full_state,
                                   config,
                                   last_updated_by,
-                                  status):
+                                  status,
+                                  message):
         """
         Update config to database using sproc_update_config_to_database stored procedure.
         
@@ -81,7 +82,8 @@ class UpdateConfigToDatabaseTool:
             "ai_full_state": ai_full_state,
             "config": config,
             "last_updated_by": last_updated_by,
-            "test_config_update_status": status
+            "test_config_update_status": status,
+            "message": message
         }
         
         event = {
